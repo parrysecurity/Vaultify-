@@ -1,150 +1,181 @@
-🔐 Vaultify - Encrypted Password Vault
-https://img.shields.io/badge/security-AES--256--GCM-green
-https://img.shields.io/badge/license-MIT-blue
-https://img.shields.io/badge/JavaScript-Vanilla-yellow
-https://img.shields.io/badge/browsers-modern-brightgreen
-https://img.shields.io/badge/PRs-welcome-brightgreen
+🔐 Vaultify
+Zero-knowledge, client-side password manager with military-grade encryption
 
-Zero-knowledge, client-side password manager with military-grade encryption. All your passwords encrypted, never leaving your browser.
+https://img.shields.io/badge/Live_Demo-vault.parrysecurity.online-2563eb?style=for-the-badge&logo=vercel
+https://img.shields.io/badge/Security-AES--256--GCM-059669?style=for-the-badge&logo=security
+https://img.shields.io/badge/License-MIT-amber?style=for-the-badge&logo=opensourceinitiative
 
-🌐 Live Demo: https://vault.parrysecurity.online
+📌 Table of Contents
+About
 
-📖 Table of Contents
-✨ Features
+Features
 
-🔐 Security Architecture
+Live Demo
 
-🚀 Quick Start
+Security Architecture
 
-💻 Technical Stack
+Quick Start
 
-📁 Project Structure
+Installation
 
-🔧 Installation & Deployment
+Browser Support
 
-🧪 Testing
+FAQ
 
-🛡️ Security Best Practices
+License
 
-🌐 Browser Support
+About
+Vaultify is a fully client-side, encrypted password manager that runs entirely in your browser.
 
-❓ FAQ
+No cloud, no servers, no tracking - just pure encryption with zero knowledge architecture.
 
-🤝 Contributing
+Why Vaultify?
+Cloud Password Managers	Vaultify
+❌ Your data on their servers	✅ Your data stays in YOUR browser
+❌ Subscription fees	✅ Completely free
+❌ Company can be breached	✅ No servers to breach
+❌ Telemetry & tracking	✅ Zero analytics
+❌ Requires account	✅ No account needed
+Features
+🔒 Encryption
+AES-256-GCM - Military-grade encryption
 
-📄 License
+PBKDF2 - 600,000 iterations with SHA-256
 
-🙏 Acknowledgments
+Unique IV per entry - Prevents pattern analysis
 
-✨ Features
-Core Security
-✅ AES-256-GCM Encryption - Military-grade encryption for all stored passwords
+Random salt per vault - Rainbow table protection
 
-✅ PBKDF2 Key Derivation - 600,000 iterations with SHA-256
+🔐 Password Management
+Create, Read, Update, Delete passwords
 
-✅ Zero-Knowledge Architecture - Master password never leaves your browser
+Secure password generator (cryptographically random)
 
-✅ Local-Only Storage - Vault stored in browser's localStorage (no cloud)
+Password strength meter (Weak → Strong)
 
-✅ Session-Based Decryption - Plaintext never persisted
+Categories: Work, Personal, Finance, Social, Other
 
-Password Management
-🔑 Create, Read, Update, Delete - Full CRUD operations
+🛡️ Security Features
+Auto-lock timer (1min - Never)
 
-🎲 Secure Password Generator - Cryptographically random (crypto.getRandomValues)
+Auto-clearing clipboard (10s - Never)
 
-📊 Password Health Dashboard - Identifies weak and duplicate passwords
+Session-based decryption (no persisted plaintext)
 
-🏷️ Smart Categories - Work, Personal, Finance, Social, Other
+Master password change with automatic re-encryption
 
-🔍 Real-Time Search & Filter - Instant filtering by name, username, category
+📊 Health Dashboard
+Identify weak passwords
 
-📋 One-Click Copy - Auto-clearing clipboard (10s, 30s, 1min, or never)
+Detect duplicate passwords
 
-User Experience
-🌓 Dark/Light Theme - Persistent user preference
+Security recommendations
 
-⏰ Auto-Lock Timer - 1min, 5min, 15min, 30min, or never
+💾 Backup & Restore
+Encrypted JSON export
 
-⌨️ Keyboard Shortcuts - Ctrl+L (lock), Ctrl+S (search), Ctrl+N (new entry)
+Secure import with password verification
 
-🔔 Toast Notifications - Visual feedback for all actions
+🎨 User Experience
+Dark / Light theme
 
-📱 Fully Responsive - Works on desktop, tablet, and mobile
+Real-time search & filter
 
-Backup & Recovery
-📤 Encrypted Export - Download encrypted JSON backup
+Keyboard shortcuts (Ctrl+L, Ctrl+S, Ctrl+N)
 
-📥 Secure Import - Restore from backup with master password verification
+Toast notifications
 
-🔑 Change Master Password - Re-encrypt entire vault with new password
+Fully responsive design
 
-🗑️ Reset Vault - Complete data wipe with confirmation
+Live Demo
+🔗 https://vault.parrysecurity.online
+Try it now - no installation required!
 
-🔐 Security Architecture
-Encryption Flow
-text
-Master Password
-      ↓
-   PBKDF2 (600k iterations + random salt)
-      ↓
-   AES-256-GCM Key
-      ↓
-   Individual Entry Encryption (unique IV per entry)
-      ↓
-   Encrypted Vault → localStorage
-Key Security Properties
-Never Trust the Server - No backend, no data transmission
+First time?
 
-Unique IV per Entry - Prevents pattern analysis
+Create a master password (strong!)
 
-Random Salt per Vault - Prevents rainbow table attacks
+Add your first password entry
 
-Client-Side Only - All crypto happens in your browser
+Test the password generator
 
-No Telemetry - Zero tracking, analytics, or external calls
+Explore the health dashboard
 
-Data Structure (Encrypted Vault)
-json
-{
-  "version": "1.0",
-  "salt": "base64_encoded_random_salt",
-  "hint": "Optional reminder (unencrypted)",
-  "settings": {
-    "autoLockMinutes": 5,
-    "clearClipboardSeconds": 30,
-    "showStrengthMeter": true
-  },
-  "encVault": "AES-256-GCM encrypted entries"
-}
-🚀 Quick Start
-Option 1: Live Demo
-Simply visit https://vault.parrysecurity.online - no installation required!
+Security Architecture
+How it works
 
-Option 2: Local Development
+┌─────────────────┐
+│ Master Password │ (Never stored, never transmitted)
+└────────┬────────┘
+         ↓
+    PBKDF2 + Salt
+   (600,000 iterations)
+         ↓
+┌─────────────────┐
+│  AES-256-GCM    │ (Encryption key - in memory only)
+│      Key        │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│ Individual      │ (Unique IV per password)
+│ Entries         │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│   localStorage  │ (Encrypted vault only)
+└─────────────────┘
+What makes it secure?
+Layer	Protection
+Master password	Never stored, never leaves browser
+Salt	Unique per vault (prevents rainbow tables)
+IV	Unique per entry (prevents pattern detection)
+LocalStorage	Only encrypted data persisted
+Session	Decrypted data cleared on lock
+Zero-Knowledge Promise
+✅ We cannot access your passwords
+
+✅ We cannot reset your master password
+
+✅ We have no servers to breach
+
+✅ We collect zero data
+
+✅ Your security is truly in your hands
+
+Quick Start
+One-minute setup
 
 # Clone the repository
 git clone https://github.com/yourusername/vaultify.git
 cd vaultify
 
-# Start a local server (choose one)
+# Start a local server
+python3 -m http.server 8000
+
+# Open your browser
+open http://localhost:8000
+That's it! No dependencies, no build steps, no configuration.
+
+Or use directly
+Download index.html and open it with a local server (not file:// protocol).
+
+Installation
+Development Server
+bash
 # Python 3
 python3 -m http.server 8000
 
 # Python 2
 python -m SimpleHTTPServer 8000
 
-# Node.js (if installed)
+# Node.js
 npx http-server -p 8000
 
-# PHP (if installed)
+# PHP
 php -S localhost:8000
-
-# Open in browser
-open http://localhost:8000
-Option 3: Production Deployment (Apache)
-
-# Copy to Apache directory
+Production Deployment (Apache)
+bash
+# Copy to web directory
 sudo cp -r vaultify /var/www/html/
 
 # Set permissions
@@ -153,10 +184,10 @@ sudo chmod -R 755 /var/www/html/vaultify/
 
 # Configure virtual host (optional)
 sudo nano /etc/apache2/sites-available/vaultify.conf
-Example virtual host configuration:
+Virtual host configuration:
 
 apache
-<VirtualHost *:80>
+<VirtualHost *:443>
     ServerName vault.parrysecurity.online
     DocumentRoot /var/www/html/vaultify
     
@@ -166,282 +197,141 @@ apache
         Require all granted
     </Directory>
     
-    ErrorLog ${APACHE_LOG_DIR}/vaultify-error.log
-    CustomLog ${APACHE_LOG_DIR}/vaultify-access.log combined
+    SSLEngine on
+    SSLCertificateFile /path/to/cert.crt
+    SSLCertificateKeyFile /path/to/key.key
 </VirtualHost>
+HTTPS Requirement
+Important: Web Crypto API requires HTTPS (except localhost).
 
-# Enable site and restart
-sudo a2ensite vaultify.conf
-sudo systemctl restart apache2
-💻 Technical Stack
-Frontend
-HTML5 - Semantic markup
 
-CSS3 - Modern styling with CSS variables for theming
-
-Vanilla JavaScript - No frameworks, pure JS
-
-Cryptographic APIs
-Web Crypto API - crypto.subtle for AES-256-GCM and PBKDF2
-
-crypto.getRandomValues - Secure random number generation
-
-Storage
-localStorage - Encrypted vault persistence
-
-sessionStorage - Temporary session management
-
-No Dependencies
-Zero external npm packages
-
-Zero third-party libraries (except FontAwesome for icons via CDN)
-
-Fully self-contained single HTML file
-
-📁 Project Structure
-text
-vaultify/
-├── index.html              # Complete application (single file)
-├── README.md               # This file
-├── LICENSE                 # MIT License
-├── .gitignore             # Git ignore rules
-└── assets/
-    └── screenshots/       # Documentation images
-        ├── dashboard.png
-        ├── add-entry.png
-        └── health-report.png
-🔧 Installation & Deployment
-Requirements
-Web Server - Apache, Nginx, or any static file server
-
-HTTPS - Required for Web Crypto API (except localhost)
-
-Modern Browser - See browser support below
-
-HTTPS Configuration (Important!)
-Web Crypto API's crypto.subtle requires HTTPS except on localhost.
-
-For Production (Let's Encrypt + Apache):
-
-# Install Certbot
-sudo apt update
+# Using Let's Encrypt (Ubuntu + Apache)
 sudo apt install certbot python3-certbot-apache
-
-# Obtain SSL certificate
 sudo certbot --apache -d vault.parrysecurity.online
-
-# Auto-renewal (certbot adds cron job automatically)
-For Production (Let's Encrypt + Nginx):
-
-sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d vault.parrysecurity.online
-Self-Signed Certificate (Testing Only):
-
-# Generate self-signed cert
-sudo mkdir /etc/apache2/ssl
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-    -keyout /etc/apache2/ssl/vaultify.key \
-    -out /etc/apache2/ssl/vaultify.crt
-
-# Configure SSL virtual host
-sudo nano /etc/apache2/sites-available/vaultify-ssl.conf
-Environment Variables
-None! Vaultify has no backend, no API keys, no environment configuration.
-
-🧪 Testing
-Manual Test Checklist
-First-time setup - Creates vault with master password
-
-Wrong password rejection - Shows error for incorrect master password
-
-Add entry - Saves website, username, password, category
-
-Password generator - Creates strong passwords (8-64 chars)
-
-Copy functions - Username/password copy with auto-clear
-
-Search & filter - Real-time filtering by text and category
-
-Edit entry - Updates all fields, updates timestamp
-
-Delete entry - Removes with confirmation dialog
-
-Auto-lock - Locks after inactivity (1-30 min options)
-
-Export/Import - Backup and restore functionality
-
-Change master password - Re-encrypts all entries
-
-Health report - Identifies weak/duplicate passwords
-
-Dark/Light mode - Toggle and persistence
-
-Keyboard shortcuts - Ctrl+L, Ctrl+S, Ctrl+N, ESC
-
-Browser DevTools Testing
-javascript
-// Test crypto availability
-console.log(window.crypto.subtle); // Should return object
-
-// Check localStorage after creating vault
-console.log(localStorage.getItem('vaultpro_v1')); // Encrypted data
-
-// Simulate 100 entries (performance test)
-for(let i = 0; i < 100; i++) {
-  // Add test entries via UI
-}
-Security Testing
-
-# Check for HTTPS (should be required)
-curl -I https://vault.parrysecurity.online
-
-# Verify no external API calls
-# Open DevTools → Network tab → Should see zero requests
-
-# Check localStorage encryption
-# Application tab → Local Storage → Data should be encrypted
-🛡️ Security Best Practices
-For Users
-Use a strong master password - 12+ characters with mixed case, numbers, symbols
-
-Enable auto-lock - Set to 5 minutes or less
-
-Regular backups - Export vault after adding important passwords
-
-Use HTTPS - Never use over HTTP (Web Crypto API requires HTTPS)
-
-Logout on shared devices - Manually lock vault when done
-
-For Developers
-Code audit - Review crypto implementation
-
-No modifications - Don't add external analytics or tracking
-
-Keep dependencies minimal - Currently zero npm packages
-
-HTTPS everywhere - Enforce secure connections
-
-Content Security Policy - Consider adding CSP headers
-
-Security Limitations (Transparent Disclosure)
-Client-side only - No protection against device compromise
-
-localStorage - Vulnerable to XSS (though no external scripts)
-
-No 2FA - Single-factor authentication only
-
-No password recovery - Lost master password = lost vault
-
-🌐 Browser Support
-Browser	Minimum Version	Status
-Chrome	60+	✅ Full support
-Firefox	55+	✅ Full support
-Edge	79+	✅ Full support
-Safari	15+	✅ Full support
-Opera	50+	✅ Full support
-Internet Explorer	-	❌ Not supported
-Required APIs:
-
+Browser Support
+Browser	Version	Status
+Chrome	60+	✅ Full
+Firefox	55+	✅ Full
+Edge	79+	✅ Full
+Safari	15+	✅ Full
+Opera	50+	✅ Full
+IE	Any	❌ Not supported
+Required APIs
 Web Crypto API (crypto.subtle)
 
-TextEncoder/TextDecoder
+TextEncoder / TextDecoder
 
 localStorage
 
-ES6+ JavaScript
+ES6+
 
-❓ FAQ
-Is Vaultify really secure?
-Yes. All encryption happens locally in your browser using the Web Crypto API (AES-256-GCM). Your master password never leaves your device, and we don't have any servers to breach.
+FAQ
+<details> <summary><strong>Is Vaultify really secure?</strong></summary>
+Yes. All encryption uses the browser's native Web Crypto API (AES-256-GCM). Your master password never leaves your device, and there are no servers to compromise.
 
-Can I sync across devices?
-No. Vaultify is intentionally offline-only. Use the export/import feature to manually transfer vaults between devices.
+</details><details> <summary><strong>What if I forget my master password?</strong></summary>
+Your data is unrecoverable. This is by design - there's no backdoor or password reset feature. Use the hint option to help remember.
 
-What if I forget my master password?
-Your data is unrecoverable. There's no "forgot password" feature - that would be a security vulnerability. Use the hint feature to help remember.
+</details><details> <summary><strong>Can I sync across devices?</strong></summary>
+No. Vaultify is intentionally offline-only for security. Use the Export/Import feature to manually transfer your encrypted vault between devices.
 
-Is my data backed up?
-Not automatically. Use the Export feature to create encrypted backups. Store backups securely (e.g., encrypted USB drive, password manager).
+</details><details> <summary><strong>Why do I need HTTPS?</strong></summary>
+Web Crypto API's crypto.subtle requires HTTPS (or localhost) for security. This prevents man-in-the-middle attacks.
 
-Can I trust the password generator?
-Yes. It uses crypto.getRandomValues() - the same cryptographically secure RNG used by major browsers for TLS.
+</details><details> <summary><strong>Is there a mobile app?</strong></summary>
+No, but the web app is fully responsive and works on mobile browsers. Add to home screen for an app-like experience.
 
-Why do I need HTTPS?
-Web Crypto API's crypto.subtle requires HTTPS (or localhost) for security. This prevents man-in-the-middle attacks that could compromise encryption.
+</details><details> <summary><strong>Does this cost money?</strong></summary>
+No. Vaultify is completely free and open source. No subscriptions, no hidden costs.
 
-Is there a mobile app?
-No. The web app is fully responsive and works on mobile browsers. Add to home screen for an app-like experience.
+</details>
+Tech Stack
 
-How many passwords can I store?
-Theoretically unlimited. localStorage limits vary by browser (typically 5-10MB), which can store thousands of encrypted entries.
+┌─────────────────────────────────────────────┐
+│                 Frontend                     │
+├─────────────────────────────────────────────┤
+│  HTML5    │  CSS3    │  Vanilla JavaScript  │
+└─────────────────────────────────────────────┘
+                      ↓
+┌─────────────────────────────────────────────┐
+│              Web Crypto API                  │
+├─────────────────────────────────────────────┤
+│  AES-256-GCM  │  PBKDF2  │  SHA-256         │
+└─────────────────────────────────────────────┘
+                      ↓
+┌─────────────────────────────────────────────┐
+│                 Storage                      │
+├─────────────────────────────────────────────┤
+│  localStorage (encrypted vault only)         │
+└─────────────────────────────────────────────┘
+Zero Dependencies
+❌ No npm packages
 
-🤝 Contributing
-We welcome contributions! Here's how you can help:
+❌ No external libraries (except FontAwesome CDN)
 
-Report Bugs
-Use the Issue Tracker
+✅ Pure vanilla JavaScript
 
-Include browser version, steps to reproduce, and screenshots
+Project Structure
 
-Suggest Features
-Open an issue with the enhancement label
-
-Describe the feature and use case
-
-Submit Pull Requests
+vaultify/
+│
+├── index.html              # Complete application (single file)
+├── README.md               # This file
+├── LICENSE                 # MIT License
+│
+└── assets/
+    └── screenshots/        # Documentation images
+Contributing
 Fork the repository
 
-Create a feature branch (git checkout -b feature/amazing-feature)
+Create a feature branch (git checkout -b feature/amazing)
 
 Commit changes (git commit -m 'Add amazing feature')
 
-Push to branch (git push origin feature/amazing-feature)
+Push to branch (git push origin feature/amazing)
 
 Open a Pull Request
 
-Development Guidelines
+Guidelines:
+
 Maintain zero external dependencies
 
-Preserve backward compatibility
+Preserve vanilla JavaScript (no frameworks)
 
-Follow existing code style (vanilla JS, no frameworks)
-
-Update documentation (README.md)
+Keep the single-file architecture
 
 Test across multiple browsers
 
-📄 License
-Distributed under the MIT License. See LICENSE file for details.
+License
+MIT License - See LICENSE file for details.
 
-text
+
 MIT License
 
 Copyright (c) 2024 ParrySecurity
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction...
-🙏 Acknowledgments
-Web Crypto API - For native browser encryption
+of this software and associated documentation files...
+Links
+🔗 Live Demo: https://vault.parrysecurity.online
 
-FontAwesome - For beautiful icons (CDN)
+🐛 Report Bug: GitHub Issues
 
-Google Fonts - For DM Sans and JetBrains Mono fonts
+💡 Feature Request: GitHub Discussions
 
-Community - All users and contributors who prioritize security
+Support
+Star this repo ⭐ if you find Vaultify useful!
 
-📞 Contact & Support
-Live Demo: https://vault.parrysecurity.online
+https://img.shields.io/github/stars/yourusername/vaultify?style=social
 
-Issues: GitHub Issues
+Security Disclosure
+Responsible Disclosure: For security vulnerabilities, please email security@parrysecurity.online instead of creating a public issue.
 
-Security Reports: securityparry@gmail.com
+PGP Key: [Your PGP fingerprint if available]
 
-⭐ Star History
-If you find Vaultify useful, please consider starring the repository on GitHub!
-
-https://api.star-history.com/svg?repos=yourusername/vaultify&type=Date
-
+<div align="center">
 🔐 Your passwords. Your encryption. Your rules.
 
-Made with 🔒 by ParrySecurity
+Made with ❤️ by ParrySecurity
+
+</div>
