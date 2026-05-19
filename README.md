@@ -9,7 +9,7 @@ No servers. No tracking. No subscriptions.
 
 <br>
 
-![Live Demo](https://vault.parrysecurity.online/)
+(https://vault.parrysecurity.online/)
 ![Security](https://img.shields.io/badge/Security-AES--256--GCM-059669?style=for-the-badge&logo=security)
 ![License](https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge&logo=opensourceinitiative)
 
