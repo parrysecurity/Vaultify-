@@ -10,10 +10,12 @@ No servers. No tracking. No subscriptions.
 <br>
 
 (https://vault.parrysecurity.online/)
+
 ![Security](https://img.shields.io/badge/Security-AES--256--GCM-059669?style=for-the-badge&logo=security)
 ![License](https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge&logo=opensourceinitiative)
 
 </div>
+<img width="1536" height="1024" alt="ChatGPT Image May 18, 2026, 01_44_13 PM" src="https://github.com/user-attachments/assets/d07523c1-cbb8-47ad-b4b2-e7ef208e0c57" />
 
 ---
 
